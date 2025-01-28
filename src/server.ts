@@ -1,6 +1,7 @@
 import Fastify, { fastify, FastifyInstance, RouteShorthandOptions } from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
-import  createRoute from './api_creator/api-creator'
+import  createRoute from './api_creator/api-creator' 
+import {FilesUtil, FileContent} from './file_reader/files-utils'
 
 const server: FastifyInstance = Fastify({logger : true})
 
@@ -19,13 +20,12 @@ const opts: RouteShorthandOptions = {
   }
 }
 
-server.get('/ping', opts, async (request, reply) => {
-  server.log.info('Incoming request at /ping')
-  return { pong: 'it worked!' }
-})
 
+const fileReader = new FilesUtil("./resources/endpoints")
 
-createRoute(server, opts, {method : "GET", path : "/test-url", statusCode : 200, body : {"sucess" : "magle"}})
+// read all file 
+// create endpoint
+
 
 
 const start = async () => {

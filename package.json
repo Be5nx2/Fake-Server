@@ -8,8 +8,9 @@
     "fastify": "^5.2.1"
   },
   "scripts": {
-    "build" : "tsc -p tsconfig.json",
-    "start" : "node build/server.js",
-    "server": "ts-node src/server.ts"
+    "build": "tsc -p tsconfig.json",
+    "start": "node build/server.js",
+    "server": "ts-node src/server.ts", 
+    "testFile" : "ts-node src/file_reader/files-utils.ts"
   }
 }
