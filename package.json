@@ -11,6 +11,5 @@
     "build": "tsc -p tsconfig.json",
     "start": "node build/server.js",
     "server": "ts-node src/server.ts", 
-    "testFile" : "ts-node src/file_reader/files-utils.ts"
   }
 }
