@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 
 
-export default interface FileContent {
+export interface FileContent {
     fileName: string,
     body: string,
 }

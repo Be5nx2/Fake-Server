@@ -1,6 +1,6 @@
-import { FastifyInstance, FastifyPluginOptions } from "fastify";
+import { FastifyInstance, FastifyPluginOptions, FastifyReply, FastifyRequest } from "fastify";
 
-interface Endpoint {
+export interface Endpoint {
     method : string,
     path : string,
     statusCode : number, 
@@ -9,14 +9,17 @@ interface Endpoint {
 
  
 
-export default function createRoute(
+export function createRoute(
     fastify : FastifyInstance,
     opts : FastifyPluginOptions,
     endpoint : Endpoint
 ){
     if(endpoint.method === 'GET'){
-        fastify.get(endpoint.path, function replyGet(request, reply){
-            fastify.log.info(`>>> ${endpoint.method} ${endpoint.path} -> ${request.body}` );
+        fastify.get(
+            endpoint.path,
+            opts, 
+            function replyGet(request, reply){
+            fastify.log.info(`>>> ${endpoint.method} ${endpoint.path}` );
 
             reply
                 .code(endpoint.statusCode)

@@ -1,30 +1,24 @@
 import Fastify, { fastify, FastifyInstance, RouteShorthandOptions } from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
-import  createRoute from './api_creator/api-creator' 
+import  {createRoute, Endpoint} from './api_creator/api-creator' 
 import {FilesUtil, FileContent} from './file_reader/files-utils'
 
 const server: FastifyInstance = Fastify({logger : true})
 
 const opts: RouteShorthandOptions = {
-  schema: {
-    response: {
-      200: {
-        type: 'object',
-        properties: {
-          pong: {
-            type: 'string'
-          }
-        }
-      }
-    }
-  }
 }
 
 
 const fileReader = new FilesUtil("./resources/endpoints")
 
-// read all file 
-// create endpoint
+const listOfFIleContent :FileContent[] = fileReader.getFileContentByFileName();
+
+listOfFIleContent
+.forEach(file  => {
+  console.log(`Creation of endpoint from : ${file.fileName}`);
+  const endpoint : Endpoint = JSON.parse(file.body);
+  createRoute(server, {}, endpoint);
+});
 
 
 
