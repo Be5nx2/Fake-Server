@@ -1,0 +1,9 @@
+{
+    "method":"GET",
+    "path":"/hello-world",
+    "statusCode" : 200,
+    "body": {
+        "aComplexBody" : "hello-you",
+        "nextStep" : "HandleSchema"
+    }
+    }
